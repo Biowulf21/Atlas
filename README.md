@@ -18,7 +18,7 @@ __Types of dates available__
 1. Navigate to the directory using your commandline. You may refer to this [link](https://www.lifewire.com/change-directories-in-command-prompt-5185508) for more information.
 
 1. Type ```pip3 install -r requirements.txt``` to install all required dependencies.
-
+1. type `python3 main.py`
 1. Start using.
 
 If any problems persist, don't hesistate to email me at jamesjilhaney@gmail.com or 20190016830@my.xu.edu.ph.
