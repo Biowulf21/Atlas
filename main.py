@@ -185,16 +185,13 @@ def parse_custom_student_data_map(list):
          student_obj = pictorial_obj['student']
          schedule_obj = student_obj['pictorial']
          college_id = schedule_obj['college_id']
-         print(pictorial_obj)
-         print('\n\n')
          student_obj = {
              'Year' : schedule_obj['year'],
              'ID' : student_obj['university_id'],
              'Full Name' : student_obj['full_name'],
              # -3 bc API college number starts at 3 and college list index starts at 0
-             'College' : college_list[college_id-3],
-             'Start Time' : schedule_obj['start_time'],
-             'End Time' : schedule_obj['end_time']
+             'College' : college_list[college_id-3], 
+             'Schedule': schedule_obj['date'] +' (' + schedule_obj['start_time'] + ' - ' + schedule_obj['end_time'] + ')'
          }
          custom_map_list.append(student_obj)
     return custom_map_list
