@@ -182,19 +182,47 @@ def parse_custom_student_data_map(list):
     custom_map_list = []
     pictorial_data = list
     for pictorial_obj in pictorial_data:
-         student_obj = pictorial_obj['student']
-         schedule_obj = student_obj['pictorial']
-         college_id = schedule_obj['college_id']
-         student_obj = {
+        student_obj = pictorial_obj['student']
+        schedule_obj = student_obj['pictorial']
+        college_id = schedule_obj['college_id']
+        print('\n\n')
+        
+        # format the datetime objects using the desired format string
+        schedule = parse_date(schedule_obj['date'], schedule_obj['start_time'], schedule_obj['end_time'])
+
+        student_obj = {
              'Year' : schedule_obj['year'],
              'ID' : student_obj['university_id'],
              'Full Name' : student_obj['full_name'],
              # -3 bc API college number starts at 3 and college list index starts at 0
              'College' : college_list[college_id-3], 
-             'Schedule': schedule_obj['date'] +' (' + schedule_obj['start_time'] + ' - ' + schedule_obj['end_time'] + ')'
+             'Schedule': schedule
          }
-         custom_map_list.append(student_obj)
+        custom_map_list.append(student_obj)
+
     return custom_map_list
+
+def parse_date(date, start_time, end_time):
+    start_datetime = datetime.strptime(date + ' ' + start_time, '%Y-%m-%d %H:%M:%S')
+    end_datetime = datetime.strptime(date + ' ' + end_time, '%Y-%m-%d %H:%M:%S')
+
+    # format the start and end times as strings with the desired format
+    start_time_str = start_datetime.strftime("%B %d, %Y %A, %I %p").capitalize()
+    end_time_str = end_datetime.strftime("%I %p").lower()
+
+    # add "am" or "pm" suffix to start and end times
+    if start_datetime.hour < 12:
+        start_time_str += " am" if "am" not in start_time_str.lower() else ""
+    else:
+        start_time_str += " pm" if "pm" not in start_time_str.lower() else ""
+    if end_datetime.hour < 12:
+        end_time_str += " am" if "am" not in end_time_str.lower() else ""
+    else:
+        end_time_str += " pm" if "pm" not in end_time_str.lower() else ""
+
+    return start_time_str + ' - ' + end_time_str
+
+
 
 
 if __name__ == '__main__':
