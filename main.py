@@ -46,8 +46,10 @@ def main():
             if (is_valid_date == False): raise ValueError("Invalid date format. Please follow the format YYYY-MM-DD.")
             get_schedules_in_date(date)
         print('==================================== EXPORT COMPLETE ====================================')
-        print('       *************************** SAY THANK YOU MASTER ***************************') 
-        print('             ################### Software Made By James Jilhaney ###################')
+        print('        ************************* SAY THANK YOU MASTER *************************') 
+        print('    ################### Software Made By James Jilhaney ###################')
+        print('=================================================================================')
+        print('\n')
     except ValueError as e:
         print(e)
 
