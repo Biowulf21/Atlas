@@ -207,18 +207,22 @@ def parse_date(date, start_time, end_time):
     end_datetime = datetime.strptime(date + ' ' + end_time, '%Y-%m-%d %H:%M:%S')
 
     # format the start and end times as strings with the desired format
-    start_time_str = start_datetime.strftime("%B %d, %Y %A, %I %p").capitalize()
+    start_datetime = datetime.strptime(date + ' ' + start_time, '%Y-%m-%d %I:%M %p')
+    end_datetime = datetime.strptime(date + ' ' + end_time, '%Y-%m-%d %I:%M %p')
+
+    # format the start and end times as strings with the desired format
+    start_time_str = start_datetime.strftime("%B %d, %Y %A, %I %p").title()
     end_time_str = end_datetime.strftime("%I %p").lower()
 
     # add "am" or "pm" suffix to start and end times
     if start_datetime.hour < 12:
-        start_time_str += " am" if "am" not in start_time_str.lower() else ""
+        start_time_str += " am" if "am" not in start_time_str else ""
     else:
-        start_time_str += " pm" if "pm" not in start_time_str.lower() else ""
+        start_time_str += " pm" if "pm" not in start_time_str else ""
     if end_datetime.hour < 12:
-        end_time_str += " am" if "am" not in end_time_str.lower() else ""
+        end_time_str += " am" if "am" not in end_time_str else ""
     else:
-        end_time_str += " pm" if "pm" not in end_time_str.lower() else ""
+        end_time_str += " pm" if "pm" not in end_time_str else ""
 
     return start_time_str + ' - ' + end_time_str
 
