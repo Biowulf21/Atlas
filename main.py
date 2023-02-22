@@ -207,8 +207,8 @@ def parse_date(date, start_time, end_time):
     end_datetime = datetime.strptime(date + ' ' + end_time, '%Y-%m-%d %H:%M:%S')
 
     # format the start and end times as strings with the desired format
-    start_time_str = start_datetime.strftime("%B %d, %Y %A, %I %p").title()
-    end_time_str = end_datetime.strftime("%I %p").lower()
+    start_time_str = start_datetime.strftime("%B %d, %Y %A, %I:%M %p").title()
+    end_time_str = end_datetime.strftime("%I:%M %p").lower()
 
     return start_time_str + ' - ' + end_time_str
 
