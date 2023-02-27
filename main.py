@@ -194,6 +194,7 @@ def parse_custom_student_data_map(list):
              'Year' : schedule_obj['year'],
              'ID' : student_obj['university_id'],
              'Full Name' : student_obj['full_name'],
+             'Time' : schedule_obj['start_time'] + ' - ' + schedule_obj['end_time'],
              # -3 bc API college number starts at 3 and college list index starts at 0
              'College' : college_list[college_id-3], 
              'Schedule': schedule
